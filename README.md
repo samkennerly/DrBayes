@@ -12,10 +12,15 @@ DrBayes.py is a Python program intended to demonstrate:
 
 ----- HOW TO USE IT -----
 
-To run the script, open a terminal and type: python DrBayes.py
-To add/subtract illnesses or doctors: modify Symptoms.csv and/or Doctors.json
+Download these files into the same folder:
 
-DrBayes asks the user several yes/no questions, then attempts to diagnose the user with an illness. For simplicity, it assumes that the user has exactly one of the illnesses listed in Symptoms.csv.
+DrBayes.py
+Doctors.json
+Symptoms.csv
+
+Open a terminal, go that folder, and type: python DrBayes.py
+
+DrBayes asks the user several yes/no questions, then attempts to diagnose the user with an illness. For simplicity, it assumes that the user has exactly one of the illnesses listed in Symptoms.csv. To add/subtract illnesses or doctors, modify Symptoms.csv and/or Doctors.json with a text editor.
 
 
 ----- HOW IT WORKS -----
