@@ -1,5 +1,5 @@
 # DrBayes
-Example naive Bayes classifier
+Example naive Bayes classifier [Python]
 
 ----- WHAT IT DOES -----
 
