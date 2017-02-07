@@ -3,7 +3,7 @@
 DrBayes is a simple example of a naive Bayes classifier.
 It attempts to guess a patient's illness by asking yes/no questions.
 To run this program, open a terminal and type: python DrBayes.py
-Made and tested using Anaconda 4.2.0 (Python 3.5.2)
+Made and tested using Anaconda 4.2.0 (Python 3.5.2).
 '''
 import pandas as pd
 import json
@@ -13,7 +13,7 @@ import json
 
 # Get DataFrame of symptom frequencies from CSV
 SymptomTable 	= pd.read_csv('Symptoms.csv')
-SymptomTable.set_index('illness',drop=True,inplace=True)
+SymptomTable	= SymptomTable.set_index('illness')
 all_illnesses 	= SymptomTable.index
 all_symptoms 	= SymptomTable.columns
 
@@ -26,8 +26,8 @@ with open('Doctors.json') as doctor_file:
 
 # At first, Dr. Bayes believes it's probably merely a flesh wound.
 # All other possible illnesses are considered equally probable.
-normalizer = 0.2 / (len(all_illnesses)-1)
-Prob = pd.Series(normalizer,index=all_illnesses)
+normalizer 	= 0.2 / (len(all_illnesses)-1)
+Prob 		= pd.Series(normalizer,index=all_illnesses)
 Prob.loc['Merely A Flesh Wound'] = 0.8
 
 # Query the patient and update the doctor's beliefs accordingly
@@ -46,8 +46,8 @@ for symptom in all_symptoms:
 		continue
 		
 	# Update the doctor's beliefs
-	likelihood = SymptomTable[symptom]
-	fValid = likelihood.notnull()
+	likelihood 	= SymptomTable[symptom]
+	fValid 		= likelihood.notnull()
 	if has_symptom:
 		Prob[fValid] *= likelihood
 	else:
@@ -56,20 +56,18 @@ for symptom in all_symptoms:
 	# Remember to normalize the distribution
 	Prob /= Prob.sum()
 		
-		
-# Print the most probable illnesses
+# Show the most probable illnesses
 print( "\nI believe these illnesses are consistent with your symptoms:" )
 Prob = Prob.sort_values(ascending=False)
 for illness in Prob.index:
-	pct = 100 * Prob.loc[illness].round(2)
+	pct = 100 * Prob.loc[illness].round(4)
 	if pct > 10:
 		print( "%02d %% \t %s" % (pct,illness) )
 		
 
-''' Recommend a doctor '''
+''' Recommend doctors '''
 
-# Recommend doctors who specialize in the most probable illness.
-# (This is a crude "reverse dictionary lookup.")
+# This is a crude "reverse dictionary lookup."
 diagnosis = Prob.idxmax()
 print( "\nThese doctors specialize in %s:" % diagnosis )
 for name, specialties in Doctors.items():
