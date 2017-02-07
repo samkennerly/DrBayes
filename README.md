@@ -41,22 +41,16 @@ Each of these numbers is interpreted as a [conditional probability](https://en.w
 ```
 P( joint pain | Boneitis ) = 0.99
 ```
-
-The "likelihood of having Boneitits, given joint pain" is
+Given that you have joint pain, the [likelihood](https://en.wikipedia.org/wiki/Likelihood_function) of having Boneitits is:
 ```
-L( Boneitits | joint pain ) := P( joint pain | Boneitis ) = 0.99
-```
-
-The "likelihood of not having Boneitis, given joint pain" is
-```
-1 - L( Boneitits | joint pain ) = 0.01
+L( Boneitits | joint pain ) = P( joint pain | Boneitis ) = 0.99
 ```
 
 The general algorithm after each question is:
 * new_beliefs = prior_beliefs * likelihood
 * new_beliefs = new_beliefs / sum(new_beliefs)
 
-The last step is  ensure that all probabilities sum to 1.
+The last step ensures that all probabilities sum to 1.
 
 Missing values in Symptoms.csv will be filled with [null values](http://pandas.pydata.org/pandas-docs/stable/missing_data.html) and ignored during calculations. If the patient declines to answer a question, then DrBayes will ignore that question and continue.
 
