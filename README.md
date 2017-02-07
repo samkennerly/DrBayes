@@ -1,31 +1,34 @@
 # DrBayes
-Example naive Bayes classifier [Python]
-
------ WHAT IT DOES -----
-
-DrBayes.py is a Python program intended to demonstrate:
-
-- implementing a probabilistic "naive Bayes classifier" algorithm
-- using pandas to perform calculations with missing or invalid data
-- reading tables from CSV files and dictionaries from JSON files
+Example naive Bayes classifier
 
 
------ HOW TO USE IT -----
+## what it does
+
+DrBayes is a Python tutorial for:
+
+- using a [naive Bayes classifier](https://en.wikipedia.org/wiki/Naive_Bayes_classifier)
+- using the [`pandas`](http://pandas.pydata.org/) package to work with missing data
+- storing tables in CSV files and [key-value dictionaries](https://en.wikipedia.org/wiki/Key-value_database) in JSON files
+
+
+## how to use it
 
 Download these files into the same folder:
 
-DrBayes.py
-Doctors.json
-Symptoms.csv
+[DrBayes.py](https://github.com/samkennerly/DrBayes/blob/master/DrBayes.py)
+[Doctors.json](https://github.com/samkennerly/DrBayes/blob/master/Doctors.json)
+[Symptoms.csv](https://github.com/samkennerly/DrBayes/blob/master/Symptoms.csv)
 
 Open a terminal, go that folder, and type: python DrBayes.py
 
 DrBayes asks the user several yes/no questions, then attempts to diagnose the user with an illness. For simplicity, it assumes that the user has exactly one of the illnesses listed in Symptoms.csv. To add/subtract illnesses or doctors, modify Symptoms.csv and/or Doctors.json with a text editor.
 
 
------ HOW IT WORKS -----
+## how it works
 
-Before asking any questions, DrBayes assumes that the user has "Merely A Flesh Wound" with probability 80%. The remaining 20% is spread equally over all other possible illnesses. After each question is answered, DrBayes consults Symptoms.csv and updates its beliefs according to Bayes' rule. Each row of Symptoms.csv contains symptom frequencies reported by fictional patients.
+Before asking any questions, DrBayes has [prior beliefs](https://en.wikipedia.org/wiki/Prior_probability) about the user's health. It assumes that the user has "Merely A Flesh Wound" with probability 80%, and the remaining 20% is spread equally over all other possible illnesses.
+
+After each question is answered, DrBayes consults Symptoms.csv and updates its beliefs according to [Bayes' rule](https://en.wikipedia.org/wiki/Bayes'_theorem). Each row of Symptoms.csv contains (fictional) symptom frequencies reported by (fictional) patients.
 
 For example, consider patients with Boneitis:
 
@@ -34,7 +37,7 @@ For example, consider patients with Boneitis:
 5% report numbness
 1% report multiple shadows
 
-Each of these numbers is interpreted as a conditional probability, e.g.
+Each of these numbers is interpreted as a [conditional probability](https://en.wikipedia.org/wiki/Conditional_probability), e.g.
 P( joint pain | Boneitis ) = 0.99
 
 The "likelihood of having Boneitits, given joint pain" is defined:
