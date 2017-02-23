@@ -1,4 +1,4 @@
-# DrBayes
+# DrBayes [Python 3]
 example naive Bayes classifier
 
 
